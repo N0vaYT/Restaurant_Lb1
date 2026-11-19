@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система бронювання столиків</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Бронювання столиків у ресторані</h1>
+        <nav id="tabs-nav" class="tabs-container" aria-label="Фільтр за датою"></nav>
+    </header>
+
+    <main>
+        <section class="booking-section">
+            <h2 id="form-title">Нове бронювання</h2>
+            <form id="booking-form" novalidate>
+                <input type="hidden" id="edit-id">
+
+                <div class="form-group">
+                    <label for="clientName">👤 Ім'я клієнта:</label>
+                    <input type="text" id="clientName" placeholder="Ім'я" required>
+                    <span class="error-msg" id="error-clientName"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">📞 Телефон:</label>
+                    <input type="tel" id="phone" placeholder="+380671234567 або 0671234567" required>
+                    <span class="error-msg" id="error-phone"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="date">📅 Дата:</label>
+                        <input type="date" id="date" required>
+                        <span class="error-msg" id="error-date"></span>
+                    </div>
+
+                    <div class="form-group half-width">
+                        <label for="time">🕒 Час (10:00–22:59):</label>
+                        <input type="time" id="time" required>
+                        <span class="error-msg" id="error-time"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="guests">👥 Кількість осіб (1–20):</label>
+                        <input type="number" id="guests" min="1" max="20" required>
+                        <span class="error-msg" id="error-guests"></span>
+                    </div>
+
+                    <div class="form-group half-width">
+                        <label for="tableNumber">🍽️ Столик:</label>
+                        <select id="tableNumber" required></select>
+                        <span class="error-msg" id="error-tableNumber"></span>
+                    </div>
+                </div>
+
+                <div id="conflict-msg" class="conflict-msg"></div>
+
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn">Зберегти бронювання</button>
+                    <button type="button" id="cancel-edit-btn" class="secondary-btn hidden">Скасувати</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="list-section">
+            <h2>Список бронювань</h2>
+            <div class="search-bar">
+                <input type="search" id="search-input" placeholder="Пошук за ім'ям або телефоном...">
+            </div>
+            <ul id="reservations-list"></ul>
+        </section>
+    </main>
+
+    <!-- Модальне вікно підтвердження скасування -->
+    <div id="confirm-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-window">
+            <h3 id="modal-title">Підтвердження дії</h3>
+            <p id="modal-text">Ви дійсно бажаєте скасувати це бронювання?</p>
+            <div class="modal-actions">
+                <button type="button" id="modal-confirm-btn" class="delete-btn">Так, скасувати</button>
+                <button type="button" id="modal-cancel-btn" class="secondary-btn">Залишити</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Система бронювання столиків у ресторані</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
